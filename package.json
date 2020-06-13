@@ -1,0 +1,40 @@
+{
+  "name": "ember-new-plus",
+  "version": "0.1.0",
+  "description": "Set up a sweet ember development environment ludicrously fast",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && grunt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atej/ember-new-plus.git"
+  },
+  "keywords": [
+    "ember",
+    "shell-script",
+    "eslint",
+    "eslint-config-airbnb",
+    "prettier",
+    "vscode",
+    "tailwindcss",
+    "developer-environment",
+    "developer-experience",
+    "development-tools"
+  ],
+  "contributors": [
+    "Aseem Taneja <aseem@rigorlab.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/atej/ember-new-plus/issues"
+  },
+  "homepage": "https://github.com/atej/ember-new-plus#readme",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "grunt": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "markdownlint": "^0.20.3"
+  }
+}
