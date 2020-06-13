@@ -1,6 +1,6 @@
 ## What is this?
 
-This is a bash scipt that **_quickly_** sets up your new ember project for a smooth developer experience in VS Code.
+A bash scipt to **_quickly_** sets up your new ember project for a smooth developer experience in VS Code.
 
 ## Quickstart ⚡
 
