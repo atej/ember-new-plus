@@ -8,4 +8,6 @@ if [ $skip_git_hooks_setup != "true" ]; then
     esac
   done
   echo
+else
+  skip_lintstaged_setup="true"
 fi
