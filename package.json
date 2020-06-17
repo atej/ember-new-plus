@@ -1,6 +1,6 @@
 {
   "name": "ember-new-plus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Set up a sweet ember development environment ludicrously fast",
   "main": "Gruntfile.js",
   "scripts": {

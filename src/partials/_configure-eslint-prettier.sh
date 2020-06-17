@@ -1,32 +1,30 @@
-# Install airbnb config
-echo
-echo -e "${LCYAN}Setting up eslint and prettier... ${NC}"
-echo
-echo -e "${YELLOW}🚧 Installing airbnb config... ${NC}"
-echo
-npx install-peerdeps -D eslint-config-airbnb-base@$ESLINT_CONFIG_AIRBNB_BASE_VERSION
-$pkg_cmd -D eslint-import-resolver-ember
-
-# Install prettier
-echo
-echo -e "${YELLOW}🚧 Installing prettier... ${NC}"
-echo
-$pkg_cmd -D prettier
-
-
-# Integrate prettier and eslint
-echo
-echo -e "${YELLOW}Making ESlint and Prettier play nice with each other... ${NC}"
-echo "See https://github.com/prettier/eslint-config-prettier for more details."
-echo
-$pkg_cmd -D eslint-plugin-prettier eslint-config-prettier
-
-
-if [ "$skip_eslint_setup" == "true" ]; then
+if [ "$skip_eslint_prettier_setup" == "true" ]; then
   echo
-  echo -e "⤼ ${YELLOW}Skipping creating an eslint config file... ${NC}"
+  echo -e "⤼ ${YELLOW}Skipping eslint+prettier setup... ${NC}"
   echo
 else
+  # Install airbnb config
+  echo
+  echo -e "${LCYAN}Setting up eslint and prettier... ${NC}"
+  echo
+  echo -e "${YELLOW}🚧 Installing airbnb config... ${NC}"
+  echo
+  npx install-peerdeps -D eslint-config-airbnb-base@$ESLINT_CONFIG_AIRBNB_BASE_VERSION
+  $pkg_cmd -D eslint-import-resolver-ember
+
+  # Install prettier
+  echo
+  echo -e "${YELLOW}🚧 Installing prettier... ${NC}"
+  echo
+  $pkg_cmd -D prettier
+
+  # Integrate prettier and eslint
+  echo
+  echo -e "${YELLOW}🚧 Installing stuff to make ESlint and Prettier play nice with each other... ${NC}"
+  echo "See https://github.com/prettier/eslint-config-prettier for more details."
+  echo
+  $pkg_cmd -D eslint-plugin-prettier eslint-config-prettier
+
   echo
   echo -e "⚙️  ${YELLOW}Creating an eslint config file...${NC}"
   > ".eslintrc.js" # truncates existing file (or creates empty)
@@ -159,14 +157,8 @@ module.exports = {
     },
   ],
 };" >> ./tests/.eslintrc.js
-fi
 
 # Configure prettier
-if [ "$skip_prettier_setup" == "true" ]; then
-  echo
-  echo -e "⤼ ${YELLOW}Skipping creating the prettier config file... ${NC}"
-  echo
-else
   echo
   echo -e "⚙️  ${YELLOW}Creating a prettier config file... ${NC}"
   > .prettierrc.js # truncates existing file (or creates empty)

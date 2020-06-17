@@ -25,52 +25,34 @@ select package_manager_choices in "yarn" "npm" "Cancel"; do
 done
 echo
 
-# Checks for existing eslintrc files
-if [ -f ".eslintrc.js" -o -f ".eslintrc.yaml" -o -f ".eslintrc.yml" -o -f ".eslintrc.json" -o -f ".eslintrc" ]; then
-  echo -e "${RED}Existing ESLint config file(s) found:${NC}"
-  ls -a .eslint* | xargs -n 1 basename
-  echo
-  echo -e "${RED}CAUTION:${NC} there is loading priority when more than one config file is present: https://eslint.org/docs/user-guide/configuring#configuration-file-formats"
-  echo
-  read -p "❗️ Write .eslintrc.js (Y/n)? "
-  echo
-  if [[ $REPLY =~ ^[Nn]$ ]]; then
-    echo -e "⤼ ${YELLOW}Skipping ESLint config${NC}"
-    echo
-    skip_eslint_setup="true"
-  fi
-fi
-
-# Max Line Length Prompt
-finished=false
-while ! $finished; do
-  read -p "🔢 What max line length do you want to prefer? (Recommendation: 80) "
-  echo
-  if [[ $REPLY =~ ^[0-9]{2,3}$ ]]; then
-    max_len_val=$REPLY
-    finished=true
-    echo
-  else
-    echo -e "${RED}Please choose a max length of two or three digits, e.g. 80 or 100 or 120${NC}"
-  fi
+# ESLint+Prettier Prompt
+echo -e "🎨 ${LCYAN}Do you want to setup eslint+prettier?${NC}"
+select eslint_prettier_choice in "Yes" "No" "Cancel"; do
+  case $eslint_prettier_choice in
+    Yes) skip_eslint_prettier_setup="false"; break;;
+    No) skip_eslint_prettier_setup="true"; break;;
+    Cancel) exit;;
+  esac
 done
+echo
 
-# Checks for existing prettierrc files
-if [ -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o -f ".prettierrc.yml" -o -f ".prettierrc.json" -o -f ".prettierrc.toml" -o -f ".prettierrc" ]; then
-  echo -e "${RED}Existing Prettier config file(s) found${NC}"
-  ls -a | grep "prettier*" | xargs -n 1 basename
-  echo
-  echo -e "${RED}CAUTION:${NC} The configuration file will be resolved starting from the location of the file being formatted, and searching up the file tree until a config file is (or isn't) found. https://prettier.io/docs/en/configuration.html"
-  echo
-  read -p "❗️ Write .prettierrc.js (Y/n)? "
-  echo
-  if [[ $REPLY =~ ^[Nn]$ ]]; then
-    echo -e "⤼ ${YELLOW}Skipping prettier config${NC}"
+if [ $skip_eslint_prettier_setup != "true" ]; then
+  # Max Line Length Prompt
+  finished=false
+  while ! $finished; do
+    read -p "🔢 What max line length do you want to prefer? (Recommendation: 80) "
     echo
-    skip_prettier_setup="true"
-  fi
-  echo
+    if [[ $REPLY =~ ^[0-9]{2,3}$ ]]; then
+      max_len_val=$REPLY
+      finished=true
+      echo
+    else
+      echo -e "${RED}Please choose a max length of two or three digits, e.g. 80 or 100 or 120${NC}"
+    fi
+  done
 fi
+
+
 
 # stylelint prompt
 echo -e "👔 ${LCYAN}Do you want to setup css linting with stylelint?${NC}"
@@ -90,35 +72,33 @@ echo
 echo
 echo -e "✨ ${GREEN}Configuring your shiny development environment... ${NC}"
 
-# Install airbnb config
-echo
-echo -e "${LCYAN}Setting up eslint and prettier... ${NC}"
-echo
-echo -e "${YELLOW}🚧 Installing airbnb config... ${NC}"
-echo
-npx install-peerdeps -D eslint-config-airbnb-base@$ESLINT_CONFIG_AIRBNB_BASE_VERSION
-$pkg_cmd -D eslint-import-resolver-ember
-
-# Install prettier
-echo
-echo -e "${YELLOW}🚧 Installing prettier... ${NC}"
-echo
-$pkg_cmd -D prettier
-
-
-# Integrate prettier and eslint
-echo
-echo -e "${YELLOW}Making ESlint and Prettier play nice with each other... ${NC}"
-echo "See https://github.com/prettier/eslint-config-prettier for more details."
-echo
-$pkg_cmd -D eslint-plugin-prettier eslint-config-prettier
-
-
-if [ "$skip_eslint_setup" == "true" ]; then
+if [ "$skip_eslint_prettier_setup" == "true" ]; then
   echo
-  echo -e "⤼ ${YELLOW}Skipping creating an eslint config file... ${NC}"
+  echo -e "⤼ ${YELLOW}Skipping eslint+prettier setup... ${NC}"
   echo
 else
+  # Install airbnb config
+  echo
+  echo -e "${LCYAN}Setting up eslint and prettier... ${NC}"
+  echo
+  echo -e "${YELLOW}🚧 Installing airbnb config... ${NC}"
+  echo
+  npx install-peerdeps -D eslint-config-airbnb-base@$ESLINT_CONFIG_AIRBNB_BASE_VERSION
+  $pkg_cmd -D eslint-import-resolver-ember
+
+  # Install prettier
+  echo
+  echo -e "${YELLOW}🚧 Installing prettier... ${NC}"
+  echo
+  $pkg_cmd -D prettier
+
+  # Integrate prettier and eslint
+  echo
+  echo -e "${YELLOW}🚧 Installing stuff to make ESlint and Prettier play nice with each other... ${NC}"
+  echo "See https://github.com/prettier/eslint-config-prettier for more details."
+  echo
+  $pkg_cmd -D eslint-plugin-prettier eslint-config-prettier
+
   echo
   echo -e "⚙️  ${YELLOW}Creating an eslint config file...${NC}"
   > ".eslintrc.js" # truncates existing file (or creates empty)
@@ -251,14 +231,8 @@ module.exports = {
     },
   ],
 };" >> ./tests/.eslintrc.js
-fi
 
 # Configure prettier
-if [ "$skip_prettier_setup" == "true" ]; then
-  echo
-  echo -e "⤼ ${YELLOW}Skipping creating the prettier config file... ${NC}"
-  echo
-else
   echo
   echo -e "⚙️  ${YELLOW}Creating a prettier config file... ${NC}"
   > .prettierrc.js # truncates existing file (or creates empty)
