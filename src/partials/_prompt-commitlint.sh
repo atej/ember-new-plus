@@ -1,4 +1,4 @@
-if [ skip_git_hooks_setup != "true" ]; then
+if [ $skip_git_hooks_setup != "true" ]; then
   echo -e "📩 ${YELLOW}Git hook: do you want to lint your commit messages?${NC}"
   select commitlint_choice in "Yes" "No" "Cancel"; do
     case $commitlint_choice in

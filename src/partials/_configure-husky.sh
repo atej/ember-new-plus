@@ -19,13 +19,13 @@ else
 module.exports = {
   hooks: {" >> husky.config.js
 
-  if [ skip_lintstaged_setup != "true" ]; then
+  if [ $skip_lintstaged_setup != "true" ]; then
 sed -i.bak "\$a\\
 \ \ \ \ 'pre-commit': 'lint-staged',
 " husky.config.js
   fi
 
-  if [ skip_commitlint_setup != "true" ]; then
+  if [ $skip_commitlint_setup != "true" ]; then
 sed -i.bak "\$a\\
 \ \ \ \ 'commit-msg': 'commitlint -E HUSKY_GIT_PARAMS',
 " husky.config.js

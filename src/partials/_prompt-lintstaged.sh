@@ -1,4 +1,4 @@
-if [ skip_git_hooks_setup != "true" ]; then
+if [ $skip_git_hooks_setup != "true" ]; then
   echo -e "🧹 ${YELLOW}Git hook: do you want to lint staged files before commiting?${NC}"
   select lintstaged_choice in "Yes" "No" "Cancel"; do
     case $lintstaged_choice in
