@@ -44,7 +44,7 @@ Done!
 
 🌊 Tailwind and postcss for utility-first CSS (plus, integration in VS Code - tailwind class name suggestions and sorting) ➨ optional
 
-🐕️ Git hooks with husky ➨ optional
+🐶 Git hooks with husky ➨ optional
 - 🧹Linting of staged js, hbs and css files ➨ optional
 - 📩 Linting of commit messages to follow [conventional commits](https://www.conventionalcommits.org/)  recommendations ➨ optional
 
