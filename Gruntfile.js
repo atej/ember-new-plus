@@ -18,7 +18,7 @@ module.exports = function(grunt) {
           'src/partials/_prompt-stylelint.sh',
           'src/partials/_prompt-debugger.sh',
           'src/partials/_prompt-tailwind.sh',
-          'src/partials/_prompt-git_hooks.sh',
+          'src/partials/_prompt-husky.sh',
           'src/partials/_prompt-lintstaged.sh',
           'src/partials/_prompt-commitlint.sh',
           'src/partials/_comment-configure.sh',
