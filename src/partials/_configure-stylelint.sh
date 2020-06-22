@@ -1,4 +1,4 @@
-if [ "$skip_stylelint_setup" == "true" ]; then
+if [ $skip_stylelint_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping stylelint setup... ${NC}"
   echo

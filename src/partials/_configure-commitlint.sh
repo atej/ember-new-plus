@@ -1,4 +1,4 @@
-if [ "$skip_commitlint_setup" == "true" ]; then
+if [ $skip_commitlint_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping commitlint setup... ${NC}"
   echo

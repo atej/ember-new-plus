@@ -1,4 +1,4 @@
-if [ "$skip_git_hooks_setup" == "true" ]; then
+if [ $skip_git_hooks_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping git hooks setup... ${NC}"
   echo

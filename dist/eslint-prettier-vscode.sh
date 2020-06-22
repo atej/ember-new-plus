@@ -72,7 +72,7 @@ echo
 echo
 echo -e "✨ ${GREEN}Configuring your shiny development environment... ${NC}"
 
-if [ "$skip_eslint_prettier_setup" == "true" ]; then
+if [ $skip_eslint_prettier_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping eslint+prettier setup... ${NC}"
   echo
@@ -281,7 +281,7 @@ module.exports = {
 
 fi
 
-if [ "$skip_stylelint_setup" == "true" ]; then
+if [ $skip_stylelint_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping stylelint setup... ${NC}"
   echo

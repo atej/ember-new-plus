@@ -166,7 +166,7 @@ fi
 echo
 echo -e "✨ ${GREEN}Configuring your shiny development environment... ${NC}"
 
-if [ "$skip_eslint_prettier_setup" == "true" ]; then
+if [ $skip_eslint_prettier_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping eslint+prettier setup... ${NC}"
   echo
@@ -375,7 +375,7 @@ module.exports = {
 
 fi
 
-if [ "$skip_stylelint_setup" == "true" ]; then
+if [ $skip_stylelint_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping stylelint setup... ${NC}"
   echo
@@ -461,7 +461,7 @@ module.exports = {
 
 fi
 
-if [ "$skip_tailwind_setup" == "true" ]; then
+if [ $skip_tailwind_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping tailwind setup... ${NC}"
   echo
@@ -593,7 +593,7 @@ module.exports = tailwindConfig;" >> tailwind.config.js
   echo "/* custom utility styles */" >> app/styles/utilities.css
 fi
 
-if [ "$skip_lintstaged_setup" == "true" ]; then
+if [ $skip_lintstaged_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping lint staged setup... ${NC}"
   echo
@@ -632,7 +632,7 @@ module.exports = {
   rm lint-staged.config.js.bak
 fi
 
-if [ "$skip_commitlint_setup" == "true" ]; then
+if [ $skip_commitlint_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping commitlint setup... ${NC}"
   echo

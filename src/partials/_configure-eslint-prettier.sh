@@ -1,4 +1,4 @@
-if [ "$skip_eslint_prettier_setup" == "true" ]; then
+if [ $skip_eslint_prettier_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping eslint+prettier setup... ${NC}"
   echo

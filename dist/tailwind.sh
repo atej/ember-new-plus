@@ -43,7 +43,7 @@ echo
 echo
 echo -e "✨ ${GREEN}Configuring your shiny development environment... ${NC}"
 
-if [ "$skip_tailwind_setup" == "true" ]; then
+if [ $skip_tailwind_setup == "true" ]; then
   echo
   echo -e "⤼ ${YELLOW}Skipping tailwind setup... ${NC}"
   echo
