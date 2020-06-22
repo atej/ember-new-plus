@@ -26,7 +26,7 @@ module.exports = function(grunt) {
           'src/partials/_configure-eslint-prettier.sh',
           'src/partials/_configure-stylelint.sh',
           'src/partials/_configure-tailwind.sh',
-          'src/partials/_configure-git_hooks.sh',
+          'src/partials/_configure-husky.sh',
           'src/partials/_configure-lintstaged.sh',
           'src/partials/_configure-commitlint.sh',
           'src/partials/_configure-debugger.sh',
